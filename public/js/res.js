@@ -27,6 +27,33 @@ async function returnCar(id) {
         refreshData();    
     }
 }
+async function reserved(){
+
+}
+async function loadResForm(){
+    let res = await getApi("users");
+    if(res.ok){
+        let users = await res.json()
+        loadDll(users, document.getElementsById("userId"), "id", "userName")
+    }
+
+    res = await getApi("cars");
+    if(res.ok){
+        let users = await res.json()
+        loadDll(users, document.getElementsById("vin"), "id", "vin")
+    }
+}
+async function loadDll(data,id,valuefield,textfield){
+    let list = document.getElementById(id)
+    list.innerHTML = '';
+
+    data.forEach(s => {
+        let option = document.createElement("option");
+        option.value = s[valuefield];
+        option.innerHTML = s[textfield];
+        list.appendChild(option)
+    });
+}
 async function drawTable() {
     let tbody = document.getElementById("tblRes");
     reservations.forEach(r => {

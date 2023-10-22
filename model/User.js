@@ -7,5 +7,8 @@ module.exports =
         if (foundUser)
             return res.send(foundUser)
         res.status(404).json({ message: "User not found" });
+    },
+    getAll:()=>{
+        return global.Users;
     }
 }
