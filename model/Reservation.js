@@ -1,4 +1,5 @@
 const dt = require("../utils/date")
+const cars = require("./Cars")
 const STATUS = {
     Cancelled: -1,
     Scheduled: 0,
@@ -12,6 +13,7 @@ module.exports = {
         if (dt.compareDate(res.date, new Date()) > 0)
             res.status = STATUS.Scheduled
         global.Reservations.push(res)
+        cars.setUnavailable(res.vin)
     },
     getById: (id) => {
         return global.Reservations.find(r => r.id == id)
@@ -24,7 +26,7 @@ module.exports = {
             return result.filter(r => r.date == date)
         if (userId)
             return result.filter(r => r.userId == userId)
-
+        return result;
     },
     update: (res) => {
         let index = global.Reservations.findIndex(r => r.id == res.id);
@@ -43,5 +45,6 @@ module.exports = {
         if (!res)
             return null;
         res.status = STATUS.Cancelled
+        return { message: "succeed" }
     }
 }
