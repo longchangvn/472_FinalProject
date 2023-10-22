@@ -60,3 +60,10 @@ let deleleApi = function (url, data) {
     });
 }
 
+function getCurrentUser() {
+    let user = sessionStorage.getItem("currentUser")
+    if (user) {
+        return JSON.parse(user)
+    }
+    return {};
+}

@@ -19,12 +19,14 @@ global.Cars = [
     {
         make: "toyota",
         model: "camry",
-        vin: "23456789ABC"
+        vin: "23456789ABC",
+        isAvailable: true
     },
     {
         make: "Mercs",
         model: "S450",
-        vin: "111222333"
+        vin: "111222333",
+        isAvailable: true
     }
 ];
 global.Reservations = [

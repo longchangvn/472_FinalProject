@@ -9,11 +9,15 @@ const STATUS = {
 
 module.exports = {
     add: (res) => {
+        console.log(res)
         res.status = STATUS.Active
         if (dt.compareDate(res.date, new Date()) > 0)
             res.status = STATUS.Scheduled
+        res.id = new Date().getTime()
         global.Reservations.push(res)
         cars.setUnavailable(res.vin)
+        console.log(global.Cars)
+        return res;
     },
     getById: (id) => {
         return global.Reservations.find(r => r.id == id)
@@ -41,10 +45,20 @@ module.exports = {
         return global.Reservations.splice(index, 1, res)[0];
     },
     cancelReservation: (id) => {
-        let res = global.Reservations.find(r => r.id == res.id);
+        let res = global.Reservations.find(r => r.id == id);
         if (!res)
             return null;
         res.status = STATUS.Cancelled
+        cars.setAvailable(res.vin)
         return { message: "succeed" }
+    },
+    returnCar: (id) => {
+        let res = global.Reservations.find(r => r.id == id);
+        if (!res)
+            return null;
+        res.status = STATUS.Done
+        cars.setAvailable(res.vin)
+        return { message: "succeed" }
+
     }
 }

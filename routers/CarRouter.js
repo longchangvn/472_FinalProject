@@ -1,4 +1,4 @@
-const controller =require("../controller/CarController")
+const controller = require("../controller/CarController")
 const express = require("express")
 const router = express.Router();
 

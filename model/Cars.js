@@ -2,11 +2,11 @@ module.exports = {
     setUnavailable: (vin) => {
         let car = global.Cars.find(c => c.vin == vin);
         if (car) {
-            car.isAvailable = true;
+            car.isAvailable = false;
         }
 
     },
-    setAvailable: (id) => {
+    setAvailable: (vin) => {
         let car = global.Cars.find(c => c.vin == vin);
         if (car) {
             car.isAvailable = true;
