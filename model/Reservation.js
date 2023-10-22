@@ -1,10 +1,10 @@
 const dt = require("../utils/date")
 const cars = require("./Cars")
 const STATUS = {
-    Cancelled: -1,
-    Scheduled: 0,
-    Active: 1,
-    Done: 10
+    Cancelled: "Cancelled",
+    Scheduled: "Scheduled",
+    Active: "Active",
+    Done: "Done"
 }
 
 module.exports = {

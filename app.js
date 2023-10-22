@@ -7,6 +7,7 @@ require("./model/db")
 
 app.use(cors())
 app.use(express.json())
+app.use(express.static("./public"))
 app.use("/reservations", security.authen, resRouter)
 
 //authentication middleware

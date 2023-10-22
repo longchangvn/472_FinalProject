@@ -1,4 +1,4 @@
-let apiUrl = ""
+let apiUrl = "http://localhost:3000/"
 let postApi = function (url, data) {
     url = apiUrl + url;
     return fetch(url, {
