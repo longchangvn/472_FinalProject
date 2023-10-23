@@ -3,8 +3,9 @@ const cors = require("cors")
 const security = require("./middleware/authen")
 const resRouter = require("./routers/ResRouter")
 const userRouter = require("./routers/UserRouter")
-
+const loginRouter = require("./routers/LoginRouter")
 const carRouter = require("./routers/CarRouter")
+
 const app = express();
 require("./model/db")
 
@@ -14,6 +15,7 @@ app.use(express.static("./public"))
 app.use("/users", security.authen, userRouter)
 app.use("/cars", security.authen, carRouter)
 app.use("/reservations", security.authen, resRouter)
+app.use("/login", loginRouter)
 
 //authentication middleware
 app.use(express.json())

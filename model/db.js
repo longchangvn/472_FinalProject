@@ -12,7 +12,20 @@ global.Users = [
         id: "3",
         name: "user3",
         role: "Customer"
+    },
+    {
+        id: "4",
+        userName: "user4",
+        role: "Customer",
+        password: "4"
+    },
+    {
+        id: "5",
+        userName: "user5",
+        role: "Admin",
+        password: "5"
     }
+
 
 ];//{id: 1, userName:"abc",password:"123"}
 global.Cars = [
