@@ -34,14 +34,22 @@ global.Cars = [
         model: "camry",
         vin: "23456789ABC",
         isAvailable: true,
-        img:"/img/camry.webp"
+        unitPricePerDay: 90,
+        year: 2013,
+        milage: 150000,
+        color: 'black',
+        img: "/img/camry.webp"
     },
     {
         make: "Mercs",
         model: "S450",
         vin: "111222333",
+        unitPricePerDay: 150,
         isAvailable: true,
-        img:"/img/mercs450.jpeg"
+        img: "/img/mercs450.jpeg",
+        year: 2013,
+        milage: 150000,
+        color: 'black',
     }
 ];
 global.Reservations = [
