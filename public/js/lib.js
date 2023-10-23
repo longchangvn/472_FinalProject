@@ -67,4 +67,15 @@ function getCurrentUser() {
     }
     return {};
 }
+function logout() {
+    sessionStorage.removeItem("currentUser")
+    sessionStorage.removeItem("token")
+    window.location.href = "login.html";
+}
+$("#nav-placeholder").load("../view/nav.html",function(data){
+    let user = JSON.parse(sessionStorage.getItem("currentUser"))
+    document.getElementById("navbar_role").innerHTML = user.role
+    document.getElementById("navbar_username").innerHTML = "Welcome " + user.userName + "!"
 
+    //data.getElementById("navbar_username").innerHTML = sessionStorage.getItem("currentUser").username
+});

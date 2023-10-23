@@ -7,8 +7,3 @@ window.onload = function () {
     }
     checkToken();
 }
-document.getElementById("logoutBtn").addEventListener("click", () => {
-    sessionStorage.removeItem("currentUser")
-    sessionStorage.removeItem("token")
-    window.location.href = "login.html";
-})

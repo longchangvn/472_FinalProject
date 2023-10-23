@@ -11,5 +11,3 @@ function tempLogin() {
     sessionStorage.setItem("token", "2")
     sessionStorage.setItem("currentUser", JSON.stringify({ id: "2", role: "customer" }))
 }
-
-tempLogin()
