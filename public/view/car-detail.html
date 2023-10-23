@@ -69,10 +69,12 @@
     <script src="../js/lib.js"></script>
 
     <script>
+        let currentCar;
         async function viewDetail(vin) {
             let res = await getApi("cars/" + vin)
             if (res.ok) {
                 let car = await res.json()
+                currentCar = car;
                 setTimeout(() => {
                     let carImg = document.getElementById("car-img")
                     let vin = document.getElementById("vin")
@@ -114,7 +116,23 @@
                 console.log(content)
                 viewDetail("23456789ABC")
             })
-
+            document.getElementById("makeReservation").addEventListener("click", () => {
+                if (!currentCar) {
+                    alert("Car in invalid")
+                    return;
+                }
+                let data = {
+                    userId: getCurrentUser().id,
+                    vin: currentCar.vin,
+                    price: currentCar.unitPricePerDay,
+                    date: new Date()
+                }
+                postApi("reservations", data).then(res => {
+                    if (res.ok) {
+                        alert("reservation created successfull");
+                    }
+                })
+            })
         }
     </script>
 </body>
