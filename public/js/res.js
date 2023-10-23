@@ -1,9 +1,16 @@
 let reservations = []
+function isAdminLogin() {
+    let currentUser = getCurrentUser();
+    console.log(currentUser);
+    console.log(currentUser && currentUser.role == "Admin")
+    return currentUser && currentUser.role == "Admin"
+}
 
 async function refreshData() {
     let user = getCurrentUser();
-   
-    let query = user.role == "Admin" ? "" : "?userId=" + user.id;
+
+    let query = isAdminLogin() ? "" : "?userId=" + user.id;
+
     let res = await getApi("reservations" + query)
     if (res.ok) {
         reservations = await res.json()
@@ -139,6 +146,10 @@ async function drawTable() {
 window.onload = function () {
     refreshData()
     loadResForm()
+    let form = document.getElementById("admin-form");
+    console.log("isAdmin:" + isAdminLogin())
+    form.style.display = isAdminLogin() ? "block" : "none";
+
     document.getElementById("btnReserved").addEventListener("click", () => {
         reserved();
     })
@@ -158,8 +169,8 @@ window.onload = function () {
 
 
     })
-    document.getElementById("showAll").addEventListener("change",()=>{
+    document.getElementById("showAll").addEventListener("change", () => {
         refreshData();
     })
-   
+
 }
