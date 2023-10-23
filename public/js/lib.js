@@ -76,6 +76,8 @@ $("#nav-placeholder").load("../view/nav.html",function(data){
     let user = JSON.parse(sessionStorage.getItem("currentUser"))
     document.getElementById("navbar_role").innerHTML = user.role
     document.getElementById("navbar_username").innerHTML = "Welcome " + user.userName + "!"
-
+    //TODO
+    //validate ROLE of user then to show corrected page/MENUs
+    
     //data.getElementById("navbar_username").innerHTML = sessionStorage.getItem("currentUser").username
 });

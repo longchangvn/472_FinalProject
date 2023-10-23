@@ -1,17 +1,20 @@
 global.Users = [
     {
         id: "1",
-        userName: "user1",
-        role: "Admin"
+        userName: "admin",
+        role: "Admin",
+        password: "admin"
     },
     {
         id: "2",
-        userName: "user2",
-        role: "Customer"
+        userName: "customer",
+        role: "Customer",
+        password: "customer"
     }, {
         id: "3",
         userName: "user3",
-        role: "Customer"
+        role: "Customer",
+        password: "3"
     },
     {
         id: "4",

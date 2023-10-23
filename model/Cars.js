@@ -18,4 +18,19 @@ module.exports = {
     getAvailableCars:()=>{
         return global.Cars.filter(c=>c.isAvailable);
     }
+    , //for customer car reservation
+    findAvailableCarsByMake: function(query) {
+        console.log(query);
+        return global.Cars.filter(c=>c.isAvailable).filter(c=>c.make.includes(query));
+    }
+    , //for customer car reservation
+    findAvailableCarsByModel: function(query) {
+        console.log(query);
+        return global.Cars.filter(c=>c.isAvailable).filter(c=>c.model.includes(query));
+    }
+    , //for customer car reservation
+    findAvailableCarsByVin: function(query) {
+        console.log(query);
+        return global.Cars.filter(c=>c.isAvailable).filter(c=>c.model.includes(query));
+    }
 }
