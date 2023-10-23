@@ -1,5 +1,6 @@
 const dt = require("../utils/date")
 const cars = require("./Cars")
+const users = require("./User")
 const STATUS = {
     Cancelled: "Cancelled",
     Scheduled: "Scheduled",
@@ -20,7 +21,12 @@ module.exports = {
         return res;
     },
     getById: (id) => {
-        return global.Reservations.find(r => r.id == id)
+        let res = global.Reservations.find(r => r.id == id)
+        if(res){
+            res.car = cars.getByVin(res.vin)
+            res.user = users.getById(res.userId)
+        }
+        return res
     },
     search: ({ vin, date, userId }) => {
         let result = global.Reservations;

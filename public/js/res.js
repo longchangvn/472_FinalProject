@@ -69,10 +69,26 @@ async function loadDll(data, id, valuefield, textfield) {
         list.appendChild(option)
     });
 }
+let currentRes;
+async function viewDetail(id) {
+    let res = await getApi("reservations/" + id)
+    if (res.ok) {
+        currentRes = await res.json()
+        console.log("res - .....", currentRes)
+        setTimeout(() => {
+            let loading = document.getElementById("loading");
+            let content = document.getElementById("contentModal")
+            loading.style.display = "none";
+            content.style.display = "block";
+            console.log(content)
+            console.log(loading)
+        },1500)
 
-async function viewDetail() {
-
+    }
+    else
+        alert("Cannot get reservation by Id")
 }
+
 async function drawTable() {
     let tbody = document.getElementById("tblRes");
     tbody.innerHTML = '';
@@ -86,10 +102,10 @@ async function drawTable() {
         tr.appendChild(createTd(r.status))
         tr.appendChild(createTd(`
         <a href='#'  class="action" data-bs-toggle="modal" data-bs-target="#viewDetail"  onclick='viewDetail(${r.id})'>View</a> 
-        <a href='#'  class="action"  onclick='cancel(${r.id})'> Cancel</a> 
-        <a class="action" href='#' onclick='returnCar(${r.id})'> Return</a>`
+       `
         ))
-
+        //  <a href='#'  class="action"  onclick='cancel(${r.id})'> Cancel</a> 
+        // <a class="action" href='#' onclick='returnCar(${r.id})'> Return</a>
         tbody.appendChild(tr)
     })
 }
@@ -100,5 +116,20 @@ window.onload = function () {
     document.getElementById("btnReserved").addEventListener("click", () => {
         reserved();
     })
+    let cancelCar = document.getElementById("cancel")
+    let retCar = document.getElementById("returnCar")
+    cancelCar.addEventListener('click', cancel)
+    retCar.addEventListener('click', returnCar)
 
+    document.getElementById("viewDetail").addEventListener('shown.bs.modal', function () {
+
+        let loading = document.getElementById("loading");
+        let content = document.getElementById("contentModal")
+        loading.style.display = "block";
+        content.style.display = "none";
+        console.log(loading)
+        console.log(content)
+
+
+    })
 }
