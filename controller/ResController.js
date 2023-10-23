@@ -11,7 +11,7 @@ module.exports = {
         res.status(200).json(model.add(req.params.id))
     },
     search: (req, res, next) => {
-        console.log("search.....")
+
         res.status(200).json(model.search(req.query))
     },
     getById: (req, res, next) => {

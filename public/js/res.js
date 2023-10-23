@@ -2,6 +2,7 @@ let reservations = []
 
 async function refreshData() {
     let user = getCurrentUser();
+   
     let query = user.role == "Admin" ? "" : "?userId=" + user.id;
     let res = await getApi("reservations" + query)
     if (res.ok) {
@@ -14,18 +15,26 @@ function createTd(content) {
     td.innerHTML = content;
     return td;
 }
-async function cancel(id) {
-    let cancel = await postApi("reservation/" + id + "/cancel")
+async function cancel() {
+    if (!currentRes) {
+        alert("Reservation is not selected...")
+        return;
+    }
+    let cancel = await postApi("reservations/" + currentRes.id + "/cancel")
     if (cancel.ok) {
-        alert("Cancelled successfully - " + id)
+        alert("Cancelled successfully - " + currentRes.id)
         refreshData();
     }
 }
 
-async function returnCar(id) {
-    let ret = await postApi("reservation/" + id + "/return")
+async function returnCar() {
+    if (!currentRes) {
+        alert("Reservation is not selected...")
+        return;
+    }
+    let ret = await postApi("reservations/" + currentRes.id + "/return")
     if (ret.ok) {
-        alert("Return successfully - " + id)
+        alert("Return successfully - " + currentRes.id)
         refreshData();
     }
 }
@@ -49,7 +58,7 @@ async function loadResForm() {
     let res = await getApi("users");
     if (res.ok) {
         let users = await res.json()
-        await loadDll(users, "userId", "id", "name")
+        await loadDll(users, "userId", "id", "userName")
     }
 
     res = await getApi("cars");
@@ -76,13 +85,30 @@ async function viewDetail(id) {
         currentRes = await res.json()
         console.log("res - .....", currentRes)
         setTimeout(() => {
+            let carImg = document.getElementById("car-img")
+            let resId = document.getElementById("resId")
+            let rentUser = document.getElementById("rentUser")
+            let rentDate = document.getElementById("rentDate")
+            let unitPrice = document.getElementById("unitPrice")
+            let days = document.getElementById("numOfDays")
+            let totalPrice = document.getElementById("totalPrice")
+            carImg.src = currentRes.car.img;
+            resId.innerHTML = currentRes.id
+            rentUser.innerHTML = currentRes.user.userName
+            rentDate.innerHTML = currentRes.date
+            unitPrice.value = currentRes.price
+            let dayCount = 5
+            days.innerHTML = dayCount + " days"
+            totalPrice.innerHTML = currentRes.price * dayCount + "$"
+
+
             let loading = document.getElementById("loading");
             let content = document.getElementById("contentModal")
             loading.style.display = "none";
             content.style.display = "block";
             console.log(content)
             console.log(loading)
-        },1500)
+        }, 1500)
 
     }
     else
@@ -132,4 +158,8 @@ window.onload = function () {
 
 
     })
+    document.getElementById("showAll").addEventListener("change",()=>{
+        refreshData();
+    })
+   
 }

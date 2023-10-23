@@ -8,6 +8,6 @@ module.exports =
         return global.Users;
     },
     getById:(id)=>{
-        return global.Users.find(u => u.id == user.id);
+        return global.Users.find(u => u.id == id);
     }
 }

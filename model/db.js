@@ -1,16 +1,16 @@
 global.Users = [
     {
         id: "1",
-        name: "user1",
+        userName: "user1",
         role: "Admin"
     },
     {
         id: "2",
-        name: "user2",
+        userName: "user2",
         role: "Customer"
     }, {
         id: "3",
-        name: "user3",
+        userName: "user3",
         role: "Customer"
     },
     {
@@ -33,13 +33,15 @@ global.Cars = [
         make: "toyota",
         model: "camry",
         vin: "23456789ABC",
-        isAvailable: true
+        isAvailable: true,
+        img:"/img/camry.webp"
     },
     {
         make: "Mercs",
         model: "S450",
         vin: "111222333",
-        isAvailable: true
+        isAvailable: true,
+        img:"/img/mercs450.jpeg"
     }
 ];
 global.Reservations = [
