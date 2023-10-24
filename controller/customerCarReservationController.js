@@ -20,7 +20,7 @@ module.exports = {
     }
     ,
     reserveACar: function(req, res, next) {
-        console.log(req.body)
+        //console.log(req.body)
         res.status(201).json(modelReservation.add(req.body));
     }
     

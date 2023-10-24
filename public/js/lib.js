@@ -70,14 +70,16 @@ function getCurrentUser() {
 function logout() {
     sessionStorage.removeItem("currentUser")
     sessionStorage.removeItem("token")
-    window.location.href = "login.html";
+    window.location.href = "/view/login.html";
 }
 $("#nav-placeholder").load("../view/nav.html",function(data){
-    let user = JSON.parse(sessionStorage.getItem("currentUser"))
-    document.getElementById("navbar_role").innerHTML = user.role
-    document.getElementById("navbar_username").innerHTML = "Welcome " + user.userName + "!"
-    //TODO
-    //validate ROLE of user then to show corrected page/MENUs
-    
-    //data.getElementById("navbar_username").innerHTML = sessionStorage.getItem("currentUser").username
+    let user = JSON.parse(sessionStorage.getItem("currentUser"));
+    if (user != null) {
+        if (user.role == 'Admin') {
+            document.getElementById("menu-rent-a-car").remove();
+        } else if (user.role == 'Customer') {
+            document.getElementById("menu-cars").remove();
+        }
+        document.getElementById("navbar_username").innerHTML = "Welcome: " + user.userName + " | Role:"+user.role;
+    }
 });

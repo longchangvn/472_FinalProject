@@ -2,7 +2,7 @@ const model = require("../model/User")
 module.exports = {
     login: (req, res, next) => {
         let user = model.login(req.body);
-        console.log("err")
+        //console.log("err")
         if (user){
             return res.send(user)
         }

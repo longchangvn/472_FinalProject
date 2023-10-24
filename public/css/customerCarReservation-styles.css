@@ -3,9 +3,13 @@
 /* since: 2020-05-03 */
 
 body {
-    margin: 50px;
-    margin-bottom: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
 }
 form {
     margin: 50px;
+}
+.myheight {
+    height: 50px;
 }

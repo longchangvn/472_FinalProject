@@ -53,6 +53,28 @@ global.Cars = [
         year: 2013,
         milage: 150000,
         color: 'black',
+    },
+    {
+        make: "toyota",
+        model: "Prius",
+        vin: "10000056789",
+        unitPricePerDay: 100,
+        isAvailable: true,
+        img: "/img/mercs450.jpeg",
+        year: 2000,
+        milage: 100000,
+        color: 'pink',
+    },
+    {
+        make: "Mercs",
+        model: "S450",
+        vin: "111222334",
+        unitPricePerDay: 150,
+        isAvailable: true,
+        img: "/img/mercs450.jpeg",
+        year: 2019,
+        milage: 140000,
+        color: 'white',
     }
 ];
 global.Reservations = [
