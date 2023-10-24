@@ -78,14 +78,14 @@ global.Cars = [
     }
 ];
 global.Reservations = [
-    {
-        id: "123",
-        userId: "2",
-        vin: "111222333",
-        date: "2023-10-21",
-        price: 150,
-        status: "Active"
-    }
+    // {
+    //     id: "100",
+    //     userId: "2",
+    //     vin: "111222444",
+    //     date: "2023-10-21",
+    //     price: 150,
+    //     status: "Active"
+    // }
 ];//{id, date, userId,VIN, price, unit_by_day, status}
 
 //console.log(global.Users)
