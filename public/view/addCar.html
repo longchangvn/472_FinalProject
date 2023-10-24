@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/addCar-styles.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center">Add a Car</h2>
+        <form id="carForm" enctype="multipart/form-data">
+            <div class="form-group row">
+                <label for="make" class="col-md-3 col-form-label">Make</label>
+                <div class="col-md-9">
+                    <select class="form-control" id="make" name="make">
+                        <option value="">Select Make</option>
+                        <!-- Populate car makes from carData -->
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="model" class="col-md-3 col-form-label">Model</label>
+                <div class="col-md-9">
+                    <select class="form-control" id="model" name="model">
+                        <option value="">Select Model</option>
+                        <!-- Models will be populated using JavaScript when the make is selected. -->
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="vin" class="col-md-3 col-form-label">VIN</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="vin" name="vin" pattern="^[A-HJ-NPR-Z0-9]{17}$" placeholder="4Y1SL65848Z411439"
+                        required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="unitPricePerDay" class="col-md-3 col-form-label">Unit Price Per Day</label>
+                <div class="col-md-9">
+                    <input type="number" step="0.01" class="form-control" id="unitPricePerDay" name="unitPricePerDay"
+                        required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="year" class="col-md-3 col-form-label">Year</label>
+                <div class="col-md-9">
+                    <input type="number" class="form-control" id="year" name="year" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="mileage" class="col-md-3 col-form-label">Mileage</label>
+                <div class="col-md-9">
+                    <input type="number" class="form-control" id="mileage" name="mileage" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="color" class="col-md-3 col-form-label">Color</label>
+                <div class="col-md-9">
+                    <select class="form-control" id="color" name="color">
+                        <option value="">Select Color</option>
+                        <!-- Models will be populated using JavaScript. -->
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="img" class="col-md-3 col-form-label">Car Image</label>
+                <div class="col-md-9">
+                    <input type="file" class="form-control-file" id="imgInp" name="img" accept="image/*" required>
+                    <img id="imgElement" src="#" alt="your image"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Add car</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="../js/addCar.js"></script>
+</body>
+
+</html>
