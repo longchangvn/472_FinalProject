@@ -87,6 +87,8 @@ async function loadDll(data, id, valuefield, textfield) {
 }
 let currentRes;
 async function viewDetail(id) {
+    document.getElementById("cancel").style.display = "none";
+    document.getElementById("returnCar").style.display = "none";
     let res = await getApi("reservations/" + id)
     if (res.ok) {
         currentRes = await res.json()
@@ -115,6 +117,11 @@ async function viewDetail(id) {
             content.style.display = "block";
             console.log(content)
             console.log(loading)
+
+            let isReadOnly = currentRes.status == "Cancelled" || currentRes.status == "Done"
+
+            document.getElementById("cancel").style.display = isReadOnly ? "none" : "block";
+            document.getElementById("returnCar").style.display = isReadOnly ? "none" : "block";
         }, 1500)
 
     }
