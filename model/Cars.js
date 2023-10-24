@@ -28,6 +28,6 @@ module.exports = {
     }
     , //for customer car reservation
     findAvailableCarsByVin: function(query) {
-        return global.Cars.filter(c=>c.isAvailable).filter(c=>c.model.includes(query));
+        return global.Cars.filter(c=>c.isAvailable).filter(c=>c.vin.includes(query));
     }
 }
