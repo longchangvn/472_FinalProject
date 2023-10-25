@@ -1,14 +1,13 @@
 # Description
-Create B2C web application to allow customers to rent a car, with following use-cases:
+Create B2C web application to allow customers to rent a car. Technologies: Node.js, Express, JavaScript, Bootstrap, REST API, Authentication, HTML... with FRONTEND and BACKEND.
 
-ROLE: Admin (back office)
- - Cars Management (CRUD)
- - Search/View reservation details.
-ROLE: User (Customer)
- - Search Cars - with list - search only the car is available, View Car detail, Make reservations 
- 
-- Login and perform Car return - make car available again in the list.
+##ROLE: Admin (back office)
+ - Cars Management (add, update, delete)
+ - Reservation Management (search, list, view, cancel, return)
+##ROLE: Customer
+- return a car, cancel reservation
+- Rent a car (search > view detail > make reservation)
+
 # Usecases
-![image](https://github.com/longchangvn/472_FinalProject/assets/144931805/c7c06690-d29d-4127-9355-b57f669b50b4)
+<img width="992" alt="image" src="https://github.com/longchangvn/472_FinalProject/assets/144931805/d3789c04-8b79-4ed9-b6f9-3a3c4595bf2b">
 
-<img width="849" alt="image" src="https://github.com/longchangvn/472_FinalProject/assets/144931805/cd45764b-3f32-45ff-9cd1-3f41841dfde9">
