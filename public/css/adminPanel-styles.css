@@ -1,0 +1,23 @@
+body {
+    background-color: rgb(255, 255, 255);
+  }
+  
+  #front {
+    background: url("/img/background.jpg") no-repeat;
+    overflow: hidden;
+    background-size: cover;
+  }
+  
+  #h1 {
+    color: black;
+    font-size: 50px;
+    margin-top: 72vh;
+    padding: 10px;
+    background: rgb(163, 255, 43);
+  }
+  
+  #pt {
+    color: black;
+    font-size: 30px;
+    background: rgba(39, 220, 130, 1);
+  }

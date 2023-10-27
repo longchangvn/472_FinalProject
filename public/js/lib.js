@@ -46,7 +46,7 @@ let putApi = function (url, data) {
 }
 
 
-let deleleApi = function (url, data) {
+let deleteApi = function (url, data) {
     url = apiUrl + url;
     return fetch(url, {
         method: "DELETE", // *GET, POST, PUT, DELETE, etc.

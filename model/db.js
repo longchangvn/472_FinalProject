@@ -33,8 +33,8 @@ global.Users = [
 ];//{id: 1, userName:"abc",password:"123"}
 global.Cars = [
     {
-        make: "toyota",
-        model: "camry",
+        make: "Toyota",
+        model: "Camry",
         vin: "23456789ABC",
         isAvailable: true,
         unitPricePerDay: 90,
@@ -55,7 +55,7 @@ global.Cars = [
         color: 'black',
     },
     {
-        make: "toyota",
+        make: "Toyota",
         model: "Prius",
         vin: "10000056789",
         unitPricePerDay: 100,

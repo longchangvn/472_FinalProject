@@ -8,20 +8,20 @@
     <!-- Add Bootstrap CSS link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/addCar-styles.css">
+    <link rel="stylesheet" href="../css/carForm-styles.css">
 </head>
 
 <body>
     <div class="container">
         <div id="nav-placeholder"></div>
 
-        <h2 class="text-center">Add a Car</h2>
+        <h2 id="head" class="text-center"></h2>
         <form id="carForm" enctype="multipart/form-data">
             <div class="row">
                 <div class="col">
                     <label for="make" class="col-md-3 col-form-label">Make</label>
                     <div class="col-md-9">
-                        <select class="form-control" id="make" name="make">
+                        <select class="form-control" id="make" name="make" required>
                             <option value="">Select Make</option>
                             <!-- Populate car makes from carData -->
                         </select>
@@ -30,7 +30,7 @@
                 <div class="col">
                     <label for="model" class="col-md-3 col-form-label">Model</label>
                     <div class="col-md-9">
-                        <select class="form-control" id="model" name="model">
+                        <select class="form-control" id="model" name="model" required>
                             <option value="">Select Model</option>
                             <!-- Models will be populated using JavaScript when the make is selected. -->
                         </select>
@@ -53,9 +53,9 @@
                     </div>
                 </div>
                 <div class="col">
-                    <label for="mileage" class="col-md-3 col-form-label">Mileage</label>
+                    <label for="milage" class="col-md-3 col-form-label">Milage</label>
                     <div class="col-md-9">
-                        <input type="number" class="form-control" id="mileage" name="mileage" required>
+                        <input type="number" class="form-control" id="milage" name="milage" required>
                     </div>
                 </div>
                 <div class="col">
@@ -66,12 +66,21 @@
                     </div>
                 </div>
             </div>
-
             <div class="form-group">
                 <label for="color" class="col-md-3 col-form-label">Color</label>
                 <div class="col-md-9">
-                    <select class="form-control" id="color" name="color">
+                    <select class="form-control" id="color" name="color" required>
                         <option value="">Select Color</option>
+                        <!-- Models will be populated using JavaScript. -->
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="isAvailable" class="col-md-3 col-form-label">Availability</label>
+                <div class="col-md-9">
+                    <select class="form-control" id="isAvailable" name="isAvailable">
+                        <option value=0>No</option>
+                        <option value=1>Yes</option>
                         <!-- Models will be populated using JavaScript. -->
                     </select>
                 </div>
@@ -94,7 +103,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
     <script src="../js/lib.js"></script>
     <script src="../js/tokenOps.js"></script>
-    <script src="../js/addCar.js"></script>
+    <script src="../js/carForm.js"></script>
 
 </body>
 

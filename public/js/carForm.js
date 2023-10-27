@@ -1,16 +1,18 @@
 // This script is responsible for dynamically populating the "Model" dropdown based on the selected "Make."
 //TODO add make page.get it from server.
 var carData = {
-    "Toyota": ["Camry", "Corolla", "Rav4", "Highlander"],
+    "Toyota": ["Camry", "Corolla", "Rav4", "Highlander", "Prius"],
     "Honda": ["Civic", "Accord", "CR-V", "Pilot"],
     "Ford": ["F-150", "Escape", "Focus", "Explorer"],
     "Chevrolet": ["Silverado", "Malibu", "Equinox", "Traverse"],
     "Volkswagen": ["Jetta", "Passat", "Tiguan", "Golf"],
     "Nissan": ["Altima", "Maxima", "Rogue", "Pathfinder"],
+    "Mercs": ["S450", "E-Class", "S-Class", "GLC", "GLE"],
+
     // Add more makes and models here
   };
-var colors = ["Red", "Blue", "Green", "White", "Black", "Silver", "Gray", "Orange"];
-
+var colors = ["red", "blue", "green", "white", "black", "silver", "gray", "orange", "pink"];
+var vin; 
 window.onload = function () {
     let makeDdl = document.getElementById("make")
     for (var make in carData) {
@@ -26,20 +28,31 @@ window.onload = function () {
         option.textContent= color;
         colorDdl.appendChild(option)
     }
-}
-document.getElementById('make').addEventListener('change', function() {
-    var selectedMake = this.value;
-    var modelSelect = document.getElementById('model');
-    modelSelect.innerHTML = "<option value=''>Select Model</option>";  
-    if (selectedMake !== '') {
-    carData[selectedMake].forEach(function(model) {
-        var option = document.createElement('option');
-        option.value = model;
-        option.textContent = model;
-        modelSelect.appendChild(option);
-    });
+    const urlParams = new URLSearchParams(window.location.search);
+    vin = urlParams.get("vin")
+    let headElem = document.getElementById("head")
+    if(vin){
+        headElem.innerHTML = "Update car"
+        getCar(vin);   
     }
+    else{
+        headElem.innerHTML = "Add car"
+    }
+}
+document.getElementById('make').addEventListener('change', function(){
+    populateModel(this.value);
 });
+function populateModel(make) {
+    var modelSelect = document.getElementById('model');
+    if (make !== '') {
+        carData[make].forEach(function(model) {
+            var option = document.createElement('option');
+            option.value = model;
+            option.textContent = model;
+            modelSelect.appendChild(option);
+        });
+    }
+}
   document.getElementById('imgInp').addEventListener('change', function() {
     const file = this.files[0]
     if(file){
@@ -50,6 +63,7 @@ document.getElementById('make').addEventListener('change', function() {
 });
 document.getElementById("submitBtn").addEventListener('click', function(){
     let carForm = document.getElementById("carForm");
+    carForm.reportValidity();
     let img = document.getElementById('imgInp').files[0]
     const formData = new FormData(carForm);
     let reqBody = {
@@ -57,9 +71,10 @@ document.getElementById("submitBtn").addEventListener('click', function(){
         model : formData.get("model"),
         vin : formData.get("vin"),
         year : formData.get("year"),
-        mileage : formData.get("mileage"),
+        milage : formData.get("milage"),
         unitPricePerDay : formData.get("unitPricePerDay"),
         color : formData.get("color"),
+        isAvailable: formData.get("isAvailable")== 1
     }
     function readFileAndSend(file) {
         return new Promise((resolve, reject) => {
@@ -67,25 +82,57 @@ document.getElementById("submitBtn").addEventListener('click', function(){
             myReader.onloadend = function (e) {
                 resolve(myReader.result);
             };
-            myReader.readAsDataURL(file);
+            if(file instanceof Blob){
+                myReader.readAsDataURL(file);
+            }
         });
     };
     readFileAndSend(img).then(function(base64string){
         /*do next steps here like sending image base64string to the server. you can send this in the body of request and in backend, receive in req.body.*/
         reqBody.image = base64string;
-        submitAddNewCar(reqBody) 
+        submit(reqBody) 
     })
     readFileAndSend(img);
 });
 document.getElementById("submitBtn").addEventListener('submit', function(event){
     event.preventDefault();
 });
-async function submitAddNewCar(reqBody){
-    console.log(reqBody)
-    let ret = await postApi("cars", reqBody)
+async function submit(reqBody){
+    let ret;
+    let succMessage;
+    if(!vin){
+        ret = await postApi("cars", reqBody);
+        succMessage = "saved successfully"
+    }
+    else{
+        ret = await putApi("cars/" + vin, reqBody);
+        succMessage = "updated successfully"
+    }
     if(ret.ok){
-        alert("saved successfully");
+        alert(succMessage);
+        window.location = "cars.html"
     }    
+    else{
+        let err = await ret.json()
+        alert(err.message);
+        document.getElementById("vin").value = '';
+        
+    }
+}
+async function getCar(vin){
+    let ret = await getApi("cars/" + vin)
+    if(ret.ok){
+        let car = await ret.json()
+        populateModel(car["make"])
+        for(elem in car){
+            let elemHtml = document.getElementById(elem)
+            if (elemHtml) {
+                document.getElementById(elem).value = car[elem]
+            }
+        }
+        document.getElementById("vin").readOnly=true
+        document.getElementById("isAvailable").value = (car.isAvailable) ? 1:0
+    }
     else{
         alert(ret.body);
     }

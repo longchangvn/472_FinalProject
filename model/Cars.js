@@ -19,6 +19,9 @@ module.exports = {
     },
     getAvailableCars:()=>{
         return global.Cars.filter(c=>c.isAvailable);
+    },
+    getCars:()=>{
+        return global.Cars;
     }
     , //for customer car reservation
     findAvailableCarsByMake: function(query) {
@@ -33,13 +36,35 @@ module.exports = {
         return global.Cars.filter(c=>c.isAvailable).filter(c=>c.vin.includes(query));
     },
     addCar: function(car){
+        car.image = '';
         let carObj = car;
-        carObj.isAvailable = true;
-        car.image = undefined;
         if(global.Cars.find(c => c.vin == car.vin)){
-            return -1;
+            return null;
         }
         global.Cars.push(carObj);
         return carObj;
+    },
+    deleteCar: function(vin){
+        const index = global.Cars.findIndex(c => c.vin == vin);
+        if(index == -1){
+            return null;
+        }
+        else{
+            let carObj = global.Cars[index];
+            global.Cars.splice(index, 1);
+            return carObj;
+        }
+    },
+    updateCar: function(vin,reqBody){
+        reqBody.image = '';
+        console.log(reqBody)
+        const index = global.Cars.findIndex(c => c.vin == vin);
+        if(index == -1){
+            return null;
+        }
+        else{
+            global.Cars[index] = reqBody;
+            return reqBody;
+        }
     }
 }
