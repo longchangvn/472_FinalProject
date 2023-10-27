@@ -48,3 +48,45 @@ document.getElementById('make').addEventListener('change', function() {
         imgElement.style.display = "block"
     }
 });
+document.getElementById("submitBtn").addEventListener('click', function(){
+    let carForm = document.getElementById("carForm");
+    let img = document.getElementById('imgInp').files[0]
+    const formData = new FormData(carForm);
+    let reqBody = {
+        make : formData.get("make"),
+        model : formData.get("model"),
+        vin : formData.get("vin"),
+        year : formData.get("year"),
+        mileage : formData.get("mileage"),
+        unitPricePerDay : formData.get("unitPricePerDay"),
+        color : formData.get("color"),
+    }
+    function readFileAndSend(file) {
+        return new Promise((resolve, reject) => {
+            let myReader = new FileReader();
+            myReader.onloadend = function (e) {
+                resolve(myReader.result);
+            };
+            myReader.readAsDataURL(file);
+        });
+    };
+    readFileAndSend(img).then(function(base64string){
+        /*do next steps here like sending image base64string to the server. you can send this in the body of request and in backend, receive in req.body.*/
+        reqBody.image = base64string;
+        submitAddNewCar(reqBody) 
+    })
+    readFileAndSend(img);
+});
+document.getElementById("submitBtn").addEventListener('submit', function(event){
+    event.preventDefault();
+});
+async function submitAddNewCar(reqBody){
+    console.log(reqBody)
+    let ret = await postApi("cars", reqBody)
+    if(ret.ok){
+        alert("saved successfully");
+    }    
+    else{
+        alert(ret.body);
+    }
+}

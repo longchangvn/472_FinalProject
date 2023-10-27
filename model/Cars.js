@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 module.exports = {
     setUnavailable: (vin) => {
         let car = global.Cars.find(c => c.vin == vin);
@@ -29,5 +31,15 @@ module.exports = {
     , //for customer car reservation
     findAvailableCarsByVin: function(query) {
         return global.Cars.filter(c=>c.isAvailable).filter(c=>c.vin.includes(query));
+    },
+    addCar: function(car){
+        let carObj = car;
+        carObj.isAvailable = true;
+        car.image = undefined;
+        if(global.Cars.find(c => c.vin == car.vin)){
+            return -1;
+        }
+        global.Cars.push(carObj);
+        return carObj;
     }
 }

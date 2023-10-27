@@ -13,11 +13,51 @@
     <!--Navigation bar-->
     <div id="nav-placeholder"></div>    
     This cars administration
-    <a href="/view/addCar.html">Add car</a>
+    <a class="btn btn-primary mb-8" href="./addCar.html">New Car</a> <!-- New Car button -->
+    <ul id= "carList" class="list-group">
+      <!-- Car Item 1 -->
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-4">
+            <img src="/img/camry.webp" alt="Car 1" class="img-fluid">
+          </div>
+          <div class="col-8">
+            <h5 class="mb-1">Car Make and Model</h5>
+            <p class="mb-1">Year: 2023</p>
+            <p class="mb-1">Color: Red</p>
+            <p class="mb-1">Price: $50 per day</p>
+            <button class="btn btn-success">Update</button> <!-- Update button -->
+            <button class="btn btn-danger">Delete</button> <!-- Delete button -->
+          </div>
+        </div>
+      </li>
+
+      <!-- Car Item 2 -->
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-4">
+            <img src="car2.jpg" alt="Car 2" class="img-fluid">
+          </div>
+          <div class="col-8">
+            <h5 class="mb-1">Another Car Make and Model</h5>
+            <p class="mb-1">Year: 2022</p>
+            <p class="mb-1">Color: Blue</p>
+            <p class="mb-1">Price: $60 per day</p>
+            <button class="btn btn-success">Update</button> <!-- Update button -->
+            <button class="btn btn-danger">Delete</button> <!-- Delete button -->
+          </div>
+        </div>
+      </li>
+
+      <!-- Add more car items as needed -->
+
+    </ul>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="../js/lib.js"></script>
     <script src="../js/tokenOps.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="../js/cars.js"></script>
+
 </body>
 </html>
