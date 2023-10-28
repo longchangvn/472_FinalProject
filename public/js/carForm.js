@@ -32,11 +32,13 @@ window.onload = function () {
     vin = urlParams.get("vin")
     let headElem = document.getElementById("head")
     if(vin){
-        headElem.innerHTML = "Update car"
+        headElem.innerHTML = "Update car";
+        document.title = "Update car";
         getCar(vin);   
     }
     else{
         headElem.innerHTML = "Add car"
+        document.title = "Add car"
     }
 }
 document.getElementById('make').addEventListener('change', function(){
@@ -117,8 +119,7 @@ async function submit(reqBody){
         window.location = "cars.html"
     }    
     else{
-        let err = await ret.json()
-        alert(err.message);
+        alert(ret.statusText + ".Try again");
         document.getElementById("vin").value = '';
         
     }

@@ -55,7 +55,7 @@ module.exports = {
                 fileOps.deleteImage(filepath)
                 res.status(404).send({message: "car not found"});
             }
-            res.status(200).send(car);
+            res.status(200).send({data: carObj});
         }
         else{
             res.status(500).send("error! try again");
