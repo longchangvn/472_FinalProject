@@ -11,3 +11,7 @@ Create B2C web application to allow customers to rent a car. Technologies: Node.
 # Usecases
 <img width="992" alt="image" src="https://github.com/longchangvn/472_FinalProject/assets/144931805/d3789c04-8b79-4ed9-b6f9-3a3c4595bf2b">
 
+# running
+start with 'npm start'
+http://localhost:3000/view/login.html
+

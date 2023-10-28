@@ -35,7 +35,7 @@ global.Cars = [
     {
         make: "Toyota",
         model: "Camry",
-        vin: "23456789ABC",
+        vin: "10000056789111111",
         isAvailable: true,
         unitPricePerDay: 90,
         year: 2013,
@@ -46,7 +46,7 @@ global.Cars = [
     {
         make: "Mercs",
         model: "S450",
-        vin: "111222333",
+        vin: "10000056789111112",
         unitPricePerDay: 150,
         isAvailable: true,
         img: "/img/mercs450.jpeg",
@@ -55,9 +55,9 @@ global.Cars = [
         color: 'grey',
     },
     {
-        make: "Wolkswagen",
+        make: "Volkswagen",
         model: "Tiguan",
-        vin: "13456789ABC",
+        vin: "10000056789111113",
         unitPricePerDay: 150,
         isAvailable: true,
         img: "/img/tiguan.jpg",
@@ -68,7 +68,7 @@ global.Cars = [
     {
         make: "Toyota",
         model: "Prius",
-        vin: "10000056789",
+        vin: "10000056789111114",
         unitPricePerDay: 100,
         isAvailable: true,
         img: "/img/prius.jpg",
@@ -79,7 +79,7 @@ global.Cars = [
     {
         make: "Nissan",
         model: "Maxima",
-        vin: "111222334",
+        vin: "10000056789111115",
         unitPricePerDay: 150,
         isAvailable: true,
         img: "/img/maxima.png",
