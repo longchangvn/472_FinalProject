@@ -40,6 +40,10 @@ window.onload = function () {
     }
 }
 document.getElementById('make').addEventListener('change', function(){
+    const modelElement = document.getElementById("model")
+    while (modelElement.options.length > 0) {
+        modelElement.remove(0);
+    }
     populateModel(this.value);
 });
 function populateModel(make) {
